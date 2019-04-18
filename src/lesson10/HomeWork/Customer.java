@@ -20,12 +20,6 @@ public class Customer {
     }
 
     public String getGender() {
-        if (gender == "MALE"){
-            return "MALE";
-        }
-        else if (gender == "FEMALE"){
-            return "FEMALE";
-        }
-        return null;
+        return gender;
     }
 }

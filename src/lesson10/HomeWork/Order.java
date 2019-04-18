@@ -23,16 +23,15 @@ public abstract class Order {
         this.customerOwned = customerOwned;
     }
 
-    abstract void validateOrder();  //проверить заказ
+    public abstract void validateOrder();  //проверить заказ
 
     public abstract void calculatePrice(); //рассчитать цену
 
-    void confirmShipping(){         //подтвердить доставку
+    public void confirmShipping(){         //подтвердить доставку
         if (dateShipped == null){
             dateShipped = new Date();   //проставляет дату доставки в текущую если она не проставленна
         }
     }
-    //--------------------------------
 
     public String getItemName() {
         return itemName;
@@ -81,5 +80,4 @@ public abstract class Order {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-    //---------------------------------------
 }

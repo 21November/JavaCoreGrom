@@ -6,8 +6,8 @@ import java.util.Date;
 public class Demo {
     public static void main(String[] args) {
 
-        Customer customer1 = new Customer("Tom", "Киев", "MALE");
-        Customer customer2 = new Customer("Vika", "Харьков", "FEMALE");
+        Customer customer1 = new Customer("Tom", "Киев", "Мужской");
+        Customer customer2 = new Customer("Vika", "Харьков", "Женский");
 
 
         Date dateCreated1 = new Date();

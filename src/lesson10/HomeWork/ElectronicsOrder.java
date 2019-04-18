@@ -3,7 +3,7 @@ package lesson10.HomeWork;
 import java.util.Date;
 
 public class ElectronicsOrder extends Order{
-    private int guaranteeMonths; //Месяцы гарантии
+    private int guaranteeMonths;
 
     public ElectronicsOrder(String itemName, Date dateCreated, String shipFromCity, String shipToCity, int basePrice, Customer customerOwned, int guaranteeMonths) {
         super(itemName, dateCreated, shipFromCity, shipToCity, basePrice, customerOwned);
@@ -11,7 +11,7 @@ public class ElectronicsOrder extends Order{
     }
 
     @Override
-    void validateOrder(){ //проверить заказ
+    public void validateOrder(){
         // заказ возможен с городов: Киев, Одесса, Днепр, Харьков и в один из этих городов. Минимальная цена заказа 100.
         // Так же имя клиента который делает заказ может быть любым, а пол только женским
         String[] cityName = {"Киев", "Одеса", "Днепр", "Харьков"};
@@ -20,7 +20,7 @@ public class ElectronicsOrder extends Order{
             if (getShipFromCity() == cityName[index]){
                 if (getShipToCity() == cityName[index]){
                     if (getBasePrice() >= 100){
-                        if (getCustomerOwned().getGender() == "FEMALE"){
+                        if (getCustomerOwned().getGender() == "Женский"){
                             setDateConfirmed(new Date());
                             setDateShipped(new Date());
                         }
@@ -31,7 +31,7 @@ public class ElectronicsOrder extends Order{
     }
 
     @Override
-    public void calculatePrice(){ //рассчитать цену
+    public void calculatePrice(){
         // Цена может состоит из цены товара и цены за доставку. Так же могут быть скидки.
         // Если доставка производится в любой город, кроме Киева и Одессы, то цена за доставку - 15% от суммы заказа.
         // В других случаях 10%. Так же если цена больше 1000 то скидка на заказ 5% после оплаты комиссии за доставку
@@ -40,13 +40,6 @@ public class ElectronicsOrder extends Order{
         //double discount;
         double price;
         double totalPrice;
-        /*
-        if (getShipToCity() != "Киев" && getShipToCity() != "Одеса"){
-            shippingCharge = getBasePrice() * 0.15;
-        }
-        else shippingCharge = getBasePrice() * 0.1;
-
-        totalPrice = getBasePrice() + shippingCharge;*/
 
         price = (getShipToCity() != "Киев" && getShipToCity() != "Одеса") ? (getBasePrice() + (getBasePrice() * 0.15)) : (getBasePrice() + (getBasePrice() * 0.1));
 

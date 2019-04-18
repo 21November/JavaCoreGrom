@@ -1,6 +1,6 @@
 package lesson10.HomeWork;
 
-import java.util.Date;
+        import java.util.Date;
 
 public class FurnitureOrder extends Order{
     private String furnitureCode; //Код мебели
@@ -11,7 +11,7 @@ public class FurnitureOrder extends Order{
     }
 
     @Override
-    void validateOrder() {
+    public void validateOrder() {
         // Заказ возможен с городов: Киев, Львов и в любой город. Минимальная цена заказа 500.
         // Так же имя клиента который делает заказ не может быть "Тест", а пол может быть любым
 
