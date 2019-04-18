@@ -15,16 +15,16 @@ public class FurnitureOrder extends Order{
         // Заказ возможен с городов: Киев, Львов и в любой город. Минимальная цена заказа 500.
         // Так же имя клиента который делает заказ не может быть "Тест", а пол может быть любым
 
-        if (getShipFromCity() == "Киев" && getShipFromCity() == "Львов"){
-            if (getBasePrice() >= 500){
-                if (getCustomerOwned().getName() != "Тест"){
-                    setDateConfirmed(new Date());
-                    setDateShipped(new Date());
+        if (getShipFromCity() == "Киев" || getShipFromCity() == "Львов"){
+            if(getShipToCity() != null){
+                if (getBasePrice() >= 500){
+                    if (getCustomerOwned().getName() != "Тест"){
+                        setDateConfirmed(new Date());
+                        setDateShipped(new Date());
+                    }
                 }
             }
         }
-
-
     }
 
     @Override
