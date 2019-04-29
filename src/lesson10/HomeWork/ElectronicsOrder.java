@@ -11,33 +11,20 @@ public class ElectronicsOrder extends Order{
     }
 
     @Override
-    public void validateOrder(){
-        // заказ возможен с городов: Киев, Одесса, Днепр, Харьков и в один из этих городов. Минимальная цена заказа 100.
-        // Так же имя клиента который делает заказ может быть любым, а пол только женским
-        String[] cityName = {"Киев", "Одеса", "Днепр", "Харьков"};
-
-        for (int index = 0; index < cityName.length; index++){
-            if (getShipFromCity() == cityName[index]){
-                if (getShipToCity() == cityName[index]){
-                    if (getBasePrice() >= 100){
-                        if (getCustomerOwned().getGender() == "Женский"){
-                            setDateConfirmed(new Date());
-                            setDateShipped(new Date());
-                        }
-                    }
-                }
-            }
-        }
+    public void validateOrder() {
+        // заказ возможен с городов: Киев, Одесса, Днепр, Харьков и в один из этих городов.
+        // Минимальная цена заказа 100. Так же имя клиента который делает заказ может быть любым, а пол только женским
+        if (getBasePrice() >= 100 && getCustomerOwned().getGender() == "Женский")
+            if (getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" || getShipFromCity() == "Харьков" )
+                if (getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" || getShipToCity() == "Харьков" )
+                    setDateConfirmed(new Date());
     }
 
     @Override
-    public void calculatePrice(){
+     public void calculatePrice() {
         // Цена может состоит из цены товара и цены за доставку. Так же могут быть скидки.
         // Если доставка производится в любой город, кроме Киева и Одессы, то цена за доставку - 15% от суммы заказа.
         // В других случаях 10%. Так же если цена больше 1000 то скидка на заказ 5% после оплаты комиссии за доставку
-
-        //double shippingCharge;
-        //double discount;
         double price;
         double totalPrice;
 
@@ -46,6 +33,5 @@ public class ElectronicsOrder extends Order{
         totalPrice = price > 1000 ? (price - (price * 0.05)) : price;
         setTotalPrice(totalPrice);
     }
-
 
 }

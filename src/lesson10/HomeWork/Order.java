@@ -4,15 +4,16 @@ import java.util.Date;
 
 public abstract class Order {
 
-    private String itemName;         //имя элемента
-    private Date dateCreated;        //Дата создания
-    private Date dateConfirmed;      //дата подтверждена....
-    private Date dateShipped;        //дата отправлена....
-    private String shipFromCity;     //корабль из города
-    private String shipToCity;       //корабль в город
-    private int basePrice;           //базовая цена
-    private double totalPrice;       //Итоговая цена....
-    private Customer customerOwned;  //Клиент владеет
+    private String itemName;
+    private Date dateCreated;
+    private Date dateConfirmed;
+    private Date dateShipped;
+    private String shipFromCity;
+    private String shipToCity;
+    private int basePrice;
+    private double totalPrice;
+    private Customer customerOwned;
+
 
     public Order(String itemName, Date dateCreated, String shipFromCity, String shipToCity, int basePrice, Customer customerOwned) {
         this.itemName = itemName;
@@ -23,15 +24,27 @@ public abstract class Order {
         this.customerOwned = customerOwned;
     }
 
-    public abstract void validateOrder();  //проверить заказ
+    abstract void validateOrder();
+    abstract void calculatePrice();
 
-    public abstract void calculatePrice(); //рассчитать цену
-
-    public void confirmShipping(){         //подтвердить доставку
-        if (dateShipped == null){
-            dateShipped = new Date();   //проставляет дату доставки в текущую если она не проставленна
-        }
+    public void confirmShipping()
+    {
+        if(dateShipped == null && dateConfirmed != null)
+            dateShipped = new Date();
     }
+
+    public void setDateConfirmed(Date dateConfirmed) {
+        this.dateConfirmed = dateConfirmed;
+    }
+
+    public void setDateShipped(Date dateShipped) {
+        this.dateShipped = dateShipped;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 
     public String getItemName() {
         return itemName;
@@ -67,17 +80,5 @@ public abstract class Order {
 
     public Customer getCustomerOwned() {
         return customerOwned;
-    }
-
-    public void setDateConfirmed(Date dateConfirmed) {
-        this.dateConfirmed = dateConfirmed;
-    }
-
-    public void setDateShipped(Date dateShipped) {
-        this.dateShipped = dateShipped;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 }

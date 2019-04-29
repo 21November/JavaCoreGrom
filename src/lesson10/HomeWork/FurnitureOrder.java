@@ -3,7 +3,7 @@ package lesson10.HomeWork;
         import java.util.Date;
 
 public class FurnitureOrder extends Order{
-    private String furnitureCode; //Код мебели
+    private String furnitureCode;
 
     public FurnitureOrder(String itemName, Date dateCreated, String shipFromCity, String shipToCity, int basePrice, Customer customerOwned, String furnitureCode) {
         super(itemName, dateCreated, shipFromCity, shipToCity, basePrice, customerOwned);
@@ -12,19 +12,13 @@ public class FurnitureOrder extends Order{
 
     @Override
     public void validateOrder() {
-        // Заказ возможен с городов: Киев, Львов и в любой город. Минимальная цена заказа 500.
+        // Заказ возможен с городов: Киев, Львов и в любой город.
+        // Минимальная цена заказа 500.
         // Так же имя клиента который делает заказ не может быть "Тест", а пол может быть любым
+        if (getBasePrice() >= 500 && getCustomerOwned().getName() != "Тест")
+            if (getShipFromCity() == "Киев" || getShipFromCity() == "Львов")
+                setDateConfirmed(new Date());
 
-        if (getShipFromCity() == "Киев" || getShipFromCity() == "Львов"){
-            if(getShipToCity() != null){
-                if (getBasePrice() >= 500){
-                    if (getCustomerOwned().getName() != "Тест"){
-                        setDateConfirmed(new Date());
-                        setDateShipped(new Date());
-                    }
-                }
-            }
-        }
     }
 
     @Override
