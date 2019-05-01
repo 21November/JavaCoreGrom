@@ -23,7 +23,7 @@ public class File {
 
     @Override
     public int hashCode() {
-        return Objects.hash(path);
+        return path.hashCode();
     }
 
     /*
