@@ -1,4 +1,4 @@
-package lesson15.cast;
+package lesson15.equals;
 
 public class User {
     private long id;
