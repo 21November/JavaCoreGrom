@@ -46,12 +46,10 @@ public class Controller {
             int indexShort = 0;
             if (api2 != null){
                 for (Room roomShort : api2.getAll()) {
-                    if (roomLong != null && roomShort != null){
-                        if (roomLong.equals(roomShort))
-                            counter++;
-                        indexShort++;
+                    if (roomLong != null && roomShort != null && roomLong.equals(roomShort)){
+                        counter++;
                     }
-
+                    indexShort++;
                 }
                 indexLong++;
             }
@@ -66,13 +64,11 @@ public class Controller {
             int secondCount = 0;
             if (api2 != null){
                 for (Room roomShort : api2.getAll()) {
-                    if (roomLong != null && roomShort != null){
-                        if (roomLong.equals(roomShort)) {
-                            result[index] = roomLong;
-                            index++;
-                        }
-                        secondCount++;
+                    if (roomLong != null && roomShort != null && roomLong.equals(roomShort)){
+                        result[index] = roomLong;
+                        index++;
                     }
+                    secondCount++;
                 }
                 firstCount++;
             }
