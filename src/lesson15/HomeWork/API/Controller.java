@@ -67,8 +67,9 @@ public class Controller {
                     if (roomLong != null && roomShort != null && roomLong.equals(roomShort)){
                         result[index] = roomLong;
                         index++;
+
+
                     }
-                    secondCount++;
                 }
                 firstCount++;
             }

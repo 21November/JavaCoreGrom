@@ -57,8 +57,7 @@ public class Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return id == room.id &&
-                price == room.price &&
+        return price == room.price &&
                 persons == room.persons &&
                 dateAvailableFrom.equals(room.dateAvailableFrom) &&
                 hotelName.equals(room.hotelName) &&
@@ -67,7 +66,7 @@ public class Room {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, persons, dateAvailableFrom, hotelName, cityName);
+        return Objects.hash(price, persons, dateAvailableFrom, hotelName, cityName);
     }
 
     @Override
