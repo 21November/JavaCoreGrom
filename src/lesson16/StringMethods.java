@@ -26,6 +26,7 @@ public class StringMethods {
         System.out.println(test);
         System.out.println(test.contains("mes"));
 
+        System.out.println(test);
         String phase = "Hello there guys";
         System.out.println(Arrays.toString(phase.split(" ")));
 
@@ -37,10 +38,6 @@ public class StringMethods {
 
         System.out.println(test.toUpperCase());
         System.out.println(test.toLowerCase());
-
-
-
-
 
         test.equals("eeee");
         test.intern();
