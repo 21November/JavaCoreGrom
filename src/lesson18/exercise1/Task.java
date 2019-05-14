@@ -8,10 +8,16 @@ public class Task {
         fileStorage.setFiles(fileNames);
 
         System.out.println("Start printing name");
+        printer(fileStorage);
+        System.out.println("Done");
 
+        String[] fileNames2 = {"test1", "test2", "test3", "test4", "test5"};
+        fileStorage.setFiles(fileNames2);
         printer(fileStorage);
 
-        System.out.println("Done");
+        String[] fileNames3 = {"test1", "test2", "test3", "test4", null};
+        fileStorage.setFiles(fileNames3);
+        printer(fileStorage);
     }
 
 
