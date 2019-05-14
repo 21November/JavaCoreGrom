@@ -7,11 +7,14 @@ public class Converter {
 
         System.out.println(stringToInt("1050a"));
 
-        System.out.println(intToString(111231));
+        System.out.println(intToString(1112311111));
         System.out.println(stringToInt("11"));
 
-        System.out.println(intToString(111231));
+        System.out.println(intToString(-1112311111));
         System.out.println(stringToInt("11"));
+
+        System.out.println(intToString(0));
+        System.out.println(stringToInt(null));
     }
 
     public static String intToString(int input){
