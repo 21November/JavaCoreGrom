@@ -26,27 +26,25 @@ public class Solution {
 
         String[] words = text.split(" ");
 
-        int index = 0;
+        int wordsAmount = 0;
 
         for (String word : words){
-            if (checkTheWord(word)){
-                index++;
-
-            }else {
+            if (!checkTheWord(word)){
                 System.err.println("not a number");
+                wordsAmount++;
 
             }
 
         }
 
-        int[] numbers = new int[index];
+        int[] numbers = new int[words.length - wordsAmount];
 
-        int index1 = 0;
+        int index = 0;
 
         for (String word : words){
             if (checkTheWord(word)) {
-                numbers[index1] = Integer.parseInt(word);
-                index1++;
+                numbers[index] = Integer.parseInt(word);
+                index++;
             }
         }
         return numbers;
