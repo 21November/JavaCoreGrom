@@ -53,17 +53,13 @@ public class Solution {
     }
     // Проверка входящего слова посимвольно
     public static boolean checkTheWord(String input){
-        char[] inputChars = input.toCharArray(); //создаем массив символов
+        char[] inputChars = input.toCharArray();
 
-        boolean checkLitter = false;
         for (Character ch : inputChars){
-            if (isDigit(ch)){                    //определяем, является ли указанное значение типа char цифрой
-                checkLitter = true;
-            }else {                              //если указаное значение типа char цифрой не являеться то:
-                checkLitter = false;             //присваеваем переменной значение false и останавливаем цыкл
-                break;
+            if (!isDigit(ch)){
+                return false;
             }
         }
-        return checkLitter;
+        return true;
     }
 }
