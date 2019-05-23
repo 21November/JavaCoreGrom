@@ -1,6 +1,6 @@
 package lesson20.task1;
 
-import lesson20.task1.exception.BadReqvestException;
+import lesson20.task1.exception.BadRequestException;
 import lesson20.task1.exception.InternalServelException;
 import lesson20.task1.exception.UserNotFoundException;
 
@@ -17,11 +17,11 @@ public class UserRepository {
 
     public User save(User user) throws Exception {
         if (user == null)
-            throw new BadReqvestException("Can`t save null user");
+            throw new BadRequestException("Can`t save null user");
 
         try {
             findById(user.getId());
-            throw new BadReqvestException("User with id: " + user.getId() + " already exist");
+            throw new BadRequestException("User with id: " + user.getId() + " already exist");
         }catch (UserNotFoundException e){
             System.out.println("User with id: " + user.getId() + " not found will be saved");
         }
@@ -40,7 +40,7 @@ public class UserRepository {
 
     public User update(User user) throws  Exception {
        if (user == null)
-           throw new BadReqvestException("Can`t update null user");
+           throw new BadRequestException("Can`t update null user");
 
        findById(user.getId());
 
