@@ -1,7 +1,7 @@
 package lesson20.task2;
 
-import lesson20.task1.exception.BadRequestException;
-import lesson20.task1.exception.InternalServelException;
+import lesson20.task2.exception.BadRequestException;
+import lesson20.task2.exception.InternalServerException;
 import lesson20.task2.exception.LimitExceeded;
 
 import java.util.Calendar;
@@ -31,24 +31,27 @@ public class TransactionDAO {
             }
             i++;
         }
-        throw new InternalServelException("Not enough space to save transaction " + transaction.getId());
+        // недостаточно места в массиве
+        throw new InternalServerException("Not enough space to save transaction " + transaction.getId());
     }
 
-    private  void validate(Transaction transaction) throws Exception{
+    private void validate(Transaction transaction) throws BadRequestException{
         //        проверка на ноль
         if (transaction == null)
             throw new BadRequestException("Transaction is null. Can't be saved");
 
         //        сумма транзакции больше указаного лимита
-        if (transaction.getAmount() > utils.getLimitTransactionsAmount())
+        if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + ". Can`t be saved");
 
         //        сумма транзакции за день больше дневного лимита
         int sum = 0;
         int count = 0;
         for(Transaction tr : getTransactionsPerDay(transaction.getDateCreated())){
-            sum += tr.getAmount();
-            count++;
+            if (tr != null){
+                sum += tr.getAmount();
+                count++;
+            }
         }
 
         if (sum + transaction.getAmount() > utils.getLimitTransactionsPerDayAmount()){
@@ -56,7 +59,7 @@ public class TransactionDAO {
         }
 
         //        количество транзакций за день больше указаного лимита
-        if (count > utils.getLimitTransactionsPerDayCount()){
+        if (count >= utils.getLimitTransactionsPerDayCount()){
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + ". Can`t be saved");
         }
 
@@ -65,7 +68,8 @@ public class TransactionDAO {
             if (city != null && city.equals(transaction.getCity()))
                 return;
         }
-        throw new BadRequestException("City " + transaction.getCity() + " is not allowed for transactions. Transaction " + transaction.getId() + " is not saved.");
+        throw new BadRequestException("City " + transaction.getCity() + " is not allowed for transactions. Transaction "
+                + transaction.getId() + " is not saved.");
     }
 
     public Transaction[] transactionList(){

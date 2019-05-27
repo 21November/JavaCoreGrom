@@ -16,6 +16,7 @@ public class Demo {
         Transaction transaction8 = new Transaction(1006, null, 20, "pay", TransactionType.OUTCOME, new Date());
         Transaction transaction9 = null;
 
+
         Controller controller = new Controller();
 
         Transaction[] transactions = {transaction1, transaction2, transaction3, transaction4, transaction5, transaction6, transaction7, transaction8, transaction9};
