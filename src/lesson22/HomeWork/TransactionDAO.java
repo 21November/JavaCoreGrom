@@ -8,8 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TransactionDAO {
-    private Transaction[] transactions = new Transaction[10];
-    private Utils utils = new Utils();
+    private static Transaction[] transactions = new Transaction[10];
+    private static Utils utils = new Utils();
 
 
     public Transaction save (Transaction transaction)throws Exception{
