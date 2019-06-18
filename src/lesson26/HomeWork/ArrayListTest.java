@@ -80,6 +80,10 @@ public class ArrayListTest {
         System.out.println(Arrays.toString(objects));
         System.out.println();
 
+        list2.add(order0);
+        list2.add(order4);
+        list2.add(order2);
+
         return list2;
     }
 }
